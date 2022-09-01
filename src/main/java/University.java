@@ -68,7 +68,7 @@ public class University {
 
     @Override
     public String toString() {
-        return this.id + " "
+        return this.id + ", "
                 + this.fullName + "("
                 + this.shortName + "), year of foundation: "
                 + this.yearOfFoundation + ", main profile: "
