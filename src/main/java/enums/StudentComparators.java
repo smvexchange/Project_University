@@ -1,0 +1,8 @@
+package enums;
+
+public enum StudentComparators {
+    FULLNAMECOMPARATOR,
+    UNIVERSITYIDCOMPARATOR,
+    COURSENUMBERCOMPARATOR,
+    AVREXAMSCORECOMPARATOR
+}

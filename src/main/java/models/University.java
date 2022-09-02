@@ -1,3 +1,7 @@
+package models;
+
+import enums.StudyProfile;
+
 public class University {
     private String id;
     private String fullName;
@@ -7,7 +11,7 @@ public class University {
 
     public University() {
         this.id = "#1";
-        this.fullName = "Lomonosov Moscow State University ";
+        this.fullName = "Lomonosov Moscow State models.University ";
         this.shortName = "MSU";
         this.yearOfFoundation = 1755;
         this.mainProfile = StudyProfile.JOURNALISM;
