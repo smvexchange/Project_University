@@ -1,9 +1,17 @@
 package models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Objects;
+
 public class Student {
+    @SerializedName("Full name")
     private String fullName;
+    @SerializedName("University ID")
     private String universityId;
+    @SerializedName("Current course number")
     private double currentCourseNumber;
+    @SerializedName("Average exam score")
     private double avgExamScore;
 
     public Student() {
@@ -54,6 +62,19 @@ public class Student {
     public Student setAvgExamScore(double avgExamScore) {
         this.avgExamScore = avgExamScore;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Double.compare(student.currentCourseNumber, currentCourseNumber) == 0 && Double.compare(student.avgExamScore, avgExamScore) == 0 && Objects.equals(fullName, student.fullName) && Objects.equals(universityId, student.universityId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, universityId, currentCourseNumber, avgExamScore);
     }
 
     @Override
