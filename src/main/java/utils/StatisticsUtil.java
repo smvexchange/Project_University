@@ -5,6 +5,8 @@ import models.Statistics;
 import models.Student;
 import models.University;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,11 +17,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class StatisticsUtil {
-
+    private static final Logger logger = LogManager.getLogger(StatisticsUtil.class.getName());
     private StatisticsUtil() {
     }
 
     public static List<Statistics> getStatisticByProfiles(List<Student> students, List<University> universities) {
+        logger.info("Getting statistics started");
         List<Statistics> statisticsList = new ArrayList<>();
         Set<StudyProfile> profileSet = universities.stream()
                 .map(University::getMainProfile)
@@ -52,6 +55,7 @@ public class StatisticsUtil {
 
 
         });
+        logger.info("Getting statistics completed");
         return statisticsList;
     }
 }

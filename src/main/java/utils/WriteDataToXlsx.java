@@ -1,6 +1,8 @@
 package utils;
 
 import models.Statistics;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -11,11 +13,13 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class WriteDataToXlsx {
+    private static final Logger logger = LogManager.getLogger(WriteDataToXlsx.class.getName());
 
     private WriteDataToXlsx() {
     }
 
     public static void writeStatisticData(List<Statistics> statisticsList, Path path) {
+        logger.info("Recording xlsx report started");
         try (XSSFWorkbook workbook = new XSSFWorkbook()) {
             XSSFSheet sheet = workbook.createSheet("Статистика");
             String[] columnHeaders = {"№ п/п",
@@ -76,10 +80,11 @@ public class WriteDataToXlsx {
             try (FileOutputStream fos = new FileOutputStream(path.toFile())) {
                 workbook.write(fos);
             } catch (IOException exception) {
-                exception.printStackTrace();
+                logger.error("Unable to write file", exception);
             }
         } catch (IOException exception) {
-            exception.printStackTrace();
+            logger.error("Unable to create xlsx workbook", exception);
         }
+        logger.info("Recording *.xlsx report finished");
     }
 }
