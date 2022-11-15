@@ -25,7 +25,7 @@ public class ReadDataFromXlsx {
 
     public static List<Student> getStudentData(String xlsxFile) throws IOException {
         List<Student> studentDataStorage = new ArrayList<>();
-        logger.info("Reading student data started");
+        logger.debug("Reading student data started.");
         Workbook workbook = new XSSFWorkbook(new FileInputStream(xlsxFile));
         Sheet sheet = workbook.getSheet("Студенты");
         Iterator<Row> iterator = sheet.rowIterator();
@@ -41,13 +41,13 @@ public class ReadDataFromXlsx {
                     cells.getCell(2).getNumericCellValue(),
                     cells.getCell(3).getNumericCellValue()));
         }
-        logger.debug("Reading student data finished");
+        logger.info("Reading student data completed.");
         return studentDataStorage;
     }
 
     public static List<University> getUniversityData(String xlsxFile) throws IOException {
         List<University> universityDataStorage = new ArrayList<>();
-        logger.info("Reading university data started");
+        logger.debug("Reading university data started.");
         Workbook workbook = new XSSFWorkbook(new FileInputStream(xlsxFile));
         Sheet sheet = workbook.getSheet("Университеты");
         Iterator<Row> iterator = sheet.iterator();
@@ -64,7 +64,7 @@ public class ReadDataFromXlsx {
                     (int) cells.getCell(3).getNumericCellValue(),
                     StudyProfile.valueOf(cells.getCell(4).getStringCellValue())));
         }
-        logger.debug("Reading university data finished");
+        logger.info("Reading university data completed.");
         return universityDataStorage;
     }
 }

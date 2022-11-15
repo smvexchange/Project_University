@@ -19,7 +19,7 @@ public class WriteDataToXlsx {
     }
 
     public static void writeStatisticData(List<Statistics> statisticsList, Path path) {
-        logger.info("Recording xlsx report started");
+        logger.debug("Recording statisticInfo.xlsx started.");
         try (XSSFWorkbook workbook = new XSSFWorkbook()) {
             XSSFSheet sheet = workbook.createSheet("Статистика");
             String[] columnHeaders = {"№ п/п",
@@ -80,11 +80,11 @@ public class WriteDataToXlsx {
             try (FileOutputStream fos = new FileOutputStream(path.toFile())) {
                 workbook.write(fos);
             } catch (IOException exception) {
-                logger.error("Unable to write file", exception);
+                logger.error("Unable to write file.", exception);
             }
         } catch (IOException exception) {
-            logger.error("Unable to create xlsx workbook", exception);
+            logger.error("Unable to create xlsx workbook.", exception);
         }
-        logger.debug("Recording *.xlsx report finished");
+        logger.debug("Recording statisticInfo.xlsx completed.");
     }
 }

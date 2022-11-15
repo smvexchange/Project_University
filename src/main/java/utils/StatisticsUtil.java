@@ -23,7 +23,7 @@ public class StatisticsUtil {
     }
 
     public static List<Statistics> getStatisticByProfiles(List<Student> students, List<University> universities) {
-        logger.info("Getting statistics started");
+        logger.debug("Getting statistics started.");
         List<Statistics> statisticsList = new ArrayList<>();
         Set<StudyProfile> profileSet = universities.stream()
                 .map(University::getMainProfile)
@@ -56,7 +56,7 @@ public class StatisticsUtil {
 
 
         });
-        logger.debug("Getting statistics completed");
+        logger.info("Calculating statistic data completed.");
         return statisticsList;
     }
 }
