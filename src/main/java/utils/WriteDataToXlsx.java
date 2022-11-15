@@ -85,6 +85,6 @@ public class WriteDataToXlsx {
         } catch (IOException exception) {
             logger.error("Unable to create xlsx workbook", exception);
         }
-        logger.info("Recording *.xlsx report finished");
+        logger.debug("Recording *.xlsx report finished");
     }
 }

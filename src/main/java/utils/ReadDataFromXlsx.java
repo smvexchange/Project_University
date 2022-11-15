@@ -41,7 +41,7 @@ public class ReadDataFromXlsx {
                     cells.getCell(2).getNumericCellValue(),
                     cells.getCell(3).getNumericCellValue()));
         }
-        logger.info("Reading student data finished");
+        logger.debug("Reading student data finished");
         return studentDataStorage;
     }
 
@@ -64,7 +64,7 @@ public class ReadDataFromXlsx {
                     (int) cells.getCell(3).getNumericCellValue(),
                     StudyProfile.valueOf(cells.getCell(4).getStringCellValue())));
         }
-        logger.info("Reading university data finished");
+        logger.debug("Reading university data finished");
         return universityDataStorage;
     }
 }
