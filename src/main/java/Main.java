@@ -1,3 +1,5 @@
+import enums.StudentComparators;
+import enums.UniversityComparators;
 import models.FullReport;
 import models.Statistics;
 import models.Student;
@@ -9,7 +11,7 @@ import utils.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -21,8 +23,13 @@ public class Main {
         logger.info("Application started...");
         Path statisticInfoFile = Paths.get("src/main/resources/statisticInfo.xlsx");
         Path universityInfoFile = Paths.get("src/main/resources/universityInfo.xlsx");
+
         List<Student> studentsList = ReadDataFromXlsx.getStudentData(String.valueOf(universityInfoFile));
+        studentsList.sort(ComparatorUtilClass.getStudentComparator(StudentComparators.AVREXAMSCORECOMPARATOR));
+
         List<University> universityList = ReadDataFromXlsx.getUniversityData(String.valueOf(universityInfoFile));
+        universityList.sort(ComparatorUtilClass.getUniversityComparator(UniversityComparators.YEAROFFOUNDATIONCOMPARATOR));
+
         List<Statistics> statisticsList = StatisticsUtil.getStatisticByProfiles(studentsList, universityList);
         WriteDataToXlsx.writeStatisticData(statisticsList, statisticInfoFile);
 
@@ -30,7 +37,8 @@ public class Main {
         fullReport.setStudentList(studentsList);
         fullReport.setUniversityList(universityList);
         fullReport.setStatisticsList(statisticsList);
-        fullReport.setProcessDate(LocalDateTime.now());
+        fullReport.setProcessDate(new Date());
+
         XmlWriter.marshalling(fullReport);
         JsonWriter.writeJsonToFile(fullReport);
         logger.info("Application finished.");

@@ -1,7 +1,8 @@
 package models;
 
 import javax.xml.bind.annotation.*;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @XmlRootElement(name = "root")
@@ -20,7 +21,7 @@ public class FullReport {
     private List<Statistics> statisticsList;
 
     @XmlElement(name = "processedAt")
-    private LocalDateTime processDate;
+    private Date processDate;
 
     public FullReport() {
     }
@@ -49,11 +50,11 @@ public class FullReport {
         this.statisticsList = statisticsList;
     }
 
-    public LocalDateTime getProcessDate() {
+    public Date getProcessDate() {
         return processDate;
     }
 
-    public void setProcessDate(LocalDateTime processDate) {
+    public void setProcessDate(Date processDate) {
         this.processDate = processDate;
     }
 }

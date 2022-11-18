@@ -21,15 +21,15 @@ public class JsonWriter {
     public static void writeJsonToFile(FullReport report) {
         logger.debug("Starting serialization process.");
         try {
-            Files.createDirectory(Paths.get("target\\jsonReqs"));
+            Files.createDirectories(Paths.get("target\\jsonReqs\\"+ LocalDate.now()));
             logger.debug("Directory for *.json files created.");
         } catch (IOException exception) {
             logger.warn("The \"jsonReqs\" directory already exists.");
         }
 
-        writeToJsonFile("target\\jsonReqs\\student_" + LocalDate.now() + ".json", JsonUtil.serializeList(report.getStudentList()));
-        writeToJsonFile("target\\jsonReqs\\university_" + LocalDate.now() + ".json", JsonUtil.serializeList(report.getUniversityList()));
-        writeToJsonFile("target\\jsonReqs\\statistics_" + LocalDate.now() + ".json", JsonUtil.serializeList(report.getStatisticsList()));
+        writeToJsonFile("target\\jsonReqs\\" + LocalDate.now() + "\\student_" + LocalDate.now() + ".json", JsonUtil.serializeList(report.getStudentList()));
+        writeToJsonFile("target\\jsonReqs\\" + LocalDate.now() + "\\university_" + LocalDate.now() + ".json", JsonUtil.serializeList(report.getUniversityList()));
+        writeToJsonFile("target\\jsonReqs\\" + LocalDate.now() + "\\statistics_" + LocalDate.now() + ".json", JsonUtil.serializeList(report.getStatisticsList()));
         logger.info("Serialization process successfully completed.");
     }
 

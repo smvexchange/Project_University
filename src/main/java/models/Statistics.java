@@ -16,7 +16,7 @@ public class Statistics {
 
     @XmlElement(name = "avgScore")
     @SerializedName("Average exam score")
-    private double avrExamScore;
+    private float avrExamScore;
 
     @XmlTransient
     @SerializedName("Quantity of student by profile")
@@ -41,11 +41,11 @@ public class Statistics {
         this.profile = profile;
     }
 
-    public double getAvrExamScore() {
+    public float getAvrExamScore() {
         return avrExamScore;
     }
 
-    public void setAvrExamScore(double avrExamScore) {
+    public void setAvrExamScore(float avrExamScore) {
         this.avrExamScore = avrExamScore;
     }
 
